@@ -7,6 +7,7 @@
       config_path: '/home/igor/os_kurs/ip.txt'
       global_login: 'login'
       global_password: 'password'
+      run_route_py: false
       routers:
         - ip: '1.1.1.1'
           login: 'login1'
