@@ -1,0 +1,10 @@
+# ip address, [username], [password]
+10.10.100.227,cisco, cisco
+192.168.1.0, admin, admin
+192.168.1.1, admin, admin
+1.1.1.1, login1, password1
+2.2.2.2, login2, password2
+3.3.3.3, login3, password3
+4.4.4.4, login4, password4
+5.5.5.5, , 
+5.5.5.5, , 
