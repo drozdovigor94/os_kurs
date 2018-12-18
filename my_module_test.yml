@@ -1,29 +1,25 @@
 - name: test my new module
-  hosts: localhost
+  hosts: localhost-py3
   tasks:
   - name: run the new module
     my_module:
       route_py_path: '/home/igor/os_kurs/1route.py'
       config_path: '/home/igor/os_kurs/ip.txt'
-      global_login: 'login'
+      global_username: 'login'
       global_password: 'password'
       run_route_py: false
       routers:
         - ip: '1.1.1.1'
-          login: 'login1'
+          username: 'login1'
           password: 'password1'
         - ip: '2.2.2.2'
-          login: 'login2'
+          username: 'login2'
           password: 'password2'
         - ip: '3.3.3.3'
-          login: 'login3'
-          password: 'password3'
+          username: 'login3'
         - ip: '4.4.4.4'
-          login: 'login4'
           password: 'password4'
         - ip: '5.5.5.5'
-          login: ''
-          password: ''
     register: testout
   - name: dump test output
     debug:
