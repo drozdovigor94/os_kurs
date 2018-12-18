@@ -67,7 +67,14 @@ route_py_output:
 from ansible.module_utils.basic import AnsibleModule
 import os
 import csv
+import re
 
+def is_valid_ip(ip):
+    ip_check = re.findall("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$", ip)
+    if ip_check == []:
+        return False
+    else:
+        return True
 
 def run_module():
 
@@ -100,6 +107,12 @@ def run_module():
     if module.params['routers'] == None:
         result['msg'] = 'No routers were specified'
         module.exit_json(**result)
+
+    # Check if ip's are valid
+    valid_ips = [is_valid_ip(x['ip']) for x in module.params['routers']]
+    if not all(valid_ips):
+        result['msg'] = 'Invalid IPs: {}'.format([i for i, x in enumerate(valid_ips) if not x])
+        module.fail_json(**result)
 
     fieldnames = ['#ip', 'username', 'password']
 
