@@ -29,7 +29,7 @@ options:
         description:
             - Path to route.py config file
         required: true
-    global_login:
+    global_username:
         description:
             - Global login for route.py
         required: true
@@ -37,6 +37,11 @@ options:
         description:
             - Global password for route.py
         required: true
+    run_route_py:
+        description:
+            - Whether to run route.py if some changes were made
+        required: false
+        default: true
     routers:
         description:
             - List of routers, each element is a dict with keys 'ip', 'login', 'password'
@@ -133,7 +138,7 @@ def run_module():
     result['msg'] = "Existing routers: {}, new routers: {}, added {} routers".format(len(existing_routers), len(new_routers), add_count)
 
     #result['msg'] = [existing_routers, new_routers]
-    
+
     # Run route.py if new routers were added
     if result['changed'] == True and module.params['run_route_py']:
         route_py_exists = os.path.isfile(module.params['route_py_path'])
